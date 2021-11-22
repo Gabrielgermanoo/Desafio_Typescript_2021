@@ -126,6 +126,10 @@ function TodoApp(listElement: HTMLDivElement) {
   }
 
   function toggleTodo(todo: Todo): Todo {
+    return {
+      ...todo,
+      done: !todo.done,
+    };
     
   }
 
@@ -163,11 +167,13 @@ function TodoApp(listElement: HTMLDivElement) {
   }
 
   function completeAll(todos: Todo[]): Array<Todo & { done: true }> {
-    
+    return todos.map((el) => ({
+        ...el,
+        done: true,
+    }));
   }
-
   function getTotalDone(todos: Todo[]): number {
-    
+    return todos.reduce((acc, red) =>  acc + Number(red.done), 0);
   }
 
   function render() {
