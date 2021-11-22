@@ -119,6 +119,10 @@ function TodoApp(listElement) {
             icon.classList.add("bi-briefcase");
             label.textContent = "Work";
         }
+        else if (tag === "school") {
+            icon.classList.add("bi-mortarboard");
+            label.textContent = "School";
+        }
         else {
             icon.classList.add("bi-pin");
             label.textContent = tag.custom;
