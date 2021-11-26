@@ -17,22 +17,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const updateStateEvent = new CustomEvent("updateState", {});
 // Exemplo de generics
-function makeState<S>(initialState: S) {
-  let state: S;
-  function getState() {
-    return state;
+class MakeState<S>{
+  state: S;
+  constructor (initialState: S){
+      this.state = initialState
   }
-  function setState(x: S) {
-    state = x;
+  getState(){
+    return this.state
+  }
+  setState(x: S) {
+    this.state = x;
     document.dispatchEvent(updateStateEvent);
   }
-  setState(initialState);
-  return { getState, setState };
 }
-
-// Application
 function TodoApp(listElement: HTMLDivElement) {
-  const { getState, setState } = makeState<Todo[]>([]);
+  let { getState, setState } =  new MakeState<Todo[]>([]);
   const dataSet: Set<BuiltInTag> = new Set(["home", "work", "school"]);
   let nextId = 0;
 
